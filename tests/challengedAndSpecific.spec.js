@@ -116,7 +116,7 @@ describe('@lau @challengedSpecific', () => {
     await axe.audit({ rules: 'link-name' });
   });
 
-  test('@keyboard Keyboard User Test', async ({ page }) => {
+  test.skip('@keyboard Keyboard User Test', async ({ page }) => {
     
   });
 

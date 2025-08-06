@@ -125,27 +125,3 @@ describe('@lau @caseAudit', () => {
     await axe.audit(page);
   });
 });
-
-describe('@lau @challengedSpecific', () => {
-  let cSAccess
-
-  test.beforeEach(async ({ page }) => {
-    cSAccess = new HomePage(page);
-    await cSAccess.logIn();
-    await cSAccess.goToChallengedSpecificAccess();
-  });
-
-  test('@axe Challenged Specific Page is accessible', async ({ page }) => {
-    await runA11y(page);
-  });
-
-  test('@smoke LAU-1152 Downloading CSV files link warns about new tab', async ({ page }) => {
-    await cSAccess.fillChallengedSpecificAccessForm();
-    await cSAccess.clickSearchButton();
-    await cSAccess.CSVGuideLinkNewTabCheck();
-  });
-
-  test('@keyboard Keyboard User Test', async ({ page }) => {
-    
-  });
-});

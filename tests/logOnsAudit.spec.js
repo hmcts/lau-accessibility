@@ -1,7 +1,6 @@
 const { test, expect, describe } = require('@playwright/test');
 const { AxeUtils } = require('../utils/axeUtils');
 const { LauPages } = require('../page-objects/lau');
-const data = require('../data/lauData.json');
 
 describe('@lau @logOnsAudit', () => {
   let logOns

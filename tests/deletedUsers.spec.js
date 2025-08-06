@@ -17,7 +17,7 @@ describe('@lau @deletedUsers', () => {
     await axe.audit(page);
   });
 
-  test.only('@checklist 1. Headings are visually distinct', async ({ page }) => {
+  test('@checklist 1. Headings are visually distinct', async ({ page }) => {
     await delUser.distinctHeaders();
     await axe.audit({ rules: 'p-as-heading' });
   });
