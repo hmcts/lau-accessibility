@@ -1,0 +1,26 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Run Playwright Tests",
+      "type": "shell",
+      "command": "npx playwright test",
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "Run Playwright Tests (Allure)",
+      "type": "shell",
+      "command": "npx playwright test --reporter=allure-playwright",
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "Generate Allure Report",
+      "type": "shell",
+      "command": "npx allure generate ./allure-results --clean -o ./allure-report && npx allure open ./allure-report",
+      "group": "test",
+      "problemMatcher": []
+    }
+  ]
+}

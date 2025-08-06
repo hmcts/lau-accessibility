@@ -1,0 +1,42 @@
+{
+  "name": "playwright-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test:all": "npx playwright test tests",
+    "test-allure:all": "rm -rf ./allure-results && npm run test:all --reporter=line,allure-playwright",
+
+    "test:smoke": "npx playwright test tests --grep @smoke --grep @lau",
+    "test-allure:smoke": "rm -rf ./allure-results && npm run test:smoke --reporter=line,allure-playwright",
+    
+    "test:lau-chromium": "npx playwright test --project=lau-chromium",
+    "test:lau-firefox": "npx playwright test --project=lau-firefox",
+    "test:lau-webkit": "npx playwright test --project=lau-webkit",
+    "test:lau-chrome": "npx playwright test --project=lau-chrome",
+    "test:lau-edge": "npx playwright test --project =lau-edge",
+    "test:lau-iphone": "npx playwright test --project=lau-iphone",
+    "test:lau-ipad": "npx playwright test --project=lau-ipad",
+    
+    "test:lau-head-test": "npx playwright test --project=lau-head-test",
+
+    "test:lau-caseAudit": "npx playwright test tests --grep @caseAudit",
+    "test:lau-challengedSpecific": "npx playwright test tests --grep @challengedSpecific",
+    "test:lau-logOnsAudit": "npx playwright test tests --grep @logOnsAudit",
+    "test:lau-deletedUsers": "npx playwright test tests --grep @deletedUsers",
+
+    "test:checklist": "npx playwright test tests --grep @caseAudit --grep @checklist",
+    "test-allure:checklist": "rm -rf ./allure-results && npm run test:checklist --reporter=line,allure-playwright",
+
+    "allure-generate": "allure generate ./allure-results --clean && allure open ./allure-report"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@axe-core/playwright": "^4.10.2",
+    "@playwright/test": "^1.53.0",
+    "@types/node": "^24.0.3",
+    "allure-playwright": "^3.3.0"
+  }
+}

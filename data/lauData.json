@@ -1,0 +1,63 @@
+{
+  "urls": {
+    "home": "https://idam-web-public.aat.platform.hmcts.net/login?client_id=lau&response_type=code&redirect_uri=https://lau.aat.platform.hmcts.net/oauth2/callback",
+    "caseAudit": "https://lau.aat.platform.hmcts.net/case-audit",
+    "challengedSpecficAccess": "https://lau.aat.platform.hmcts.net/challenged-specific-access",
+    "logOnsAudit": "https://lau.aat.platform.hmcts.net/logon-audit",
+    "deletedUsers": "https://lau.aat.platform.hmcts.net/user-deletion-audit"
+  },
+  "locators": {
+    "usernameInput": "input#username",
+    "passwordInput": "input#password",
+    "firstInputField": "input#first-search-field",
+    "startDate": "input#startTimestamp",
+    "endDate": "input#endTimestamp",
+    "caseRefInputField": "input#caseRef",
+    "caseTypeIdInputField": "input#caseTypeId",
+    "jurisdictionInputField": "input#caseJurisdictionId",
+    "activitySelect": "select#activity",
+    "mainContent": "#main-content"
+  },
+  "inputs": {
+    "username": "lautest@test.com",
+    "password": "Password12",
+    "userId": "user-rr",
+    "startDate": "2025-03-09T12:04:52",
+    "endDate": "2025-05-11T12:04:56",
+    "startDateTyped": "09032025",
+    "endDateTyped": "11052025",
+    "startTimeTyped": "100000",
+    "endTimeTyped": "120000",
+    "caseTypeId": "CIVIL",
+    "logOnsUserId": "d821d20a-e1ac-456a-a465-2e4e52a68e77",
+    "deletedUserId": "4f18-b03b-7d2042209344",
+    "deleteSearchStartDate": "2023-07-03T12:04:52"
+  },
+  "elementNames": {
+    "signInBtn": "Sign in",
+    "searchBtn": "Search",
+    "userId": "User ID",
+    "caseTypeID": "Case Type ID",
+    "resultsHeader": "results",
+    "caseAuditH1": "Case audit search",
+    "caseAuditH2": "Search",
+    "caseAuditP": "Include time parameters in your search",
+    "skipToMain": "Skip to main content",
+    "challengedSpecificAccessH1": "Challenged & specific access search",
+    "logonAuditH1": "Log ons audit search",
+    "userDeletionAuditH1": "Deleted user search"
+  }, 
+  "links": {
+    "errorSummaryLink": ".govuk-error-summary__list a",
+    "challengedSpecficAccess": "challenged & specific access",
+    "logOnsAudit": "Log ons audit",
+    "deletedUsers": "Deleted users",
+    "csvGuideLink": "guide to downloading csv files",
+    "nextPage": "next page",
+    "previousPage": "previous page",
+    "lastPage": "last page"
+  },
+  "texts": {
+    "newTabWarning": "(opens in new tab)"
+  }
+}
