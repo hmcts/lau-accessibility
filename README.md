@@ -14,16 +14,16 @@ Once tests have completed, run the following to open the Allure report
 ```sh
 npm run allure-generate
 ```
-- **Run all tests on all browsers:**
-  ```sh
-  npm run test-allure:all
-  ```
+**Run all tests on all browsers:**
+```sh
+npm run test-allure:all
+```
 
-- **Run tests in headed mode (For test purpose):**
-  Uncomment lines 116-125 in the `playwright.config.js` file.
-  ```sh
-  npm run test:lau-headed
-  ```
+**Run tests in headed mode (For test purpose):**
+Uncomment lines 116-125 in the `playwright.config.js` file.
+```sh
+npm run test:lau-headed
+```
 
 ## Structure
 - `tests/lau`: Test folders for each website
