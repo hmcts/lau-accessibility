@@ -2,7 +2,7 @@
   "urls": {
     "home": "https://idam-web-public.aat.platform.hmcts.net/login?client_id=lau&response_type=code&redirect_uri=https://lau.aat.platform.hmcts.net/oauth2/callback",
     "caseAudit": "https://lau.aat.platform.hmcts.net/case-audit",
-    "challengedSpecficAccess": "https://lau.aat.platform.hmcts.net/challenged-specific-access",
+    "challengedSpecificAccess": "https://lau.aat.platform.hmcts.net/challenged-specific-access",
     "logOnsAudit": "https://lau.aat.platform.hmcts.net/logon-audit",
     "deletedUsers": "https://lau.aat.platform.hmcts.net/user-deletion-audit"
   },
@@ -49,7 +49,7 @@
   }, 
   "links": {
     "errorSummaryLink": ".govuk-error-summary__list a",
-    "challengedSpecficAccess": "challenged & specific access",
+    "challengedSpecificAccess": "challenged & specific access",
     "logOnsAudit": "Log ons audit",
     "deletedUsers": "Deleted users",
     "csvGuideLink": "guide to downloading csv files",
