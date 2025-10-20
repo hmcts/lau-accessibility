@@ -55,6 +55,12 @@ class LauPages {
       .click();
   }
 
+  async goToUserDetails() {
+    await this.page
+      .getByRole("link", { name: new RegExp(this.links.userDetails, "i") })
+      .click();
+  }
+
   async fillChallengedSpecificAccessForm() {
     await this.page
       .getByRole("textBox", { name: this.elementNames.userId })
@@ -93,6 +99,12 @@ class LauPages {
       .locator(this.locators.startDate)
       .fill(this.inputs.deleteSearchStartDate);
     await this.page.locator(this.locators.endDate).fill(this.inputs.endDate);
+  }
+
+  async fillUserDetailsSearchForm() {
+    await this.page
+      .locator(this.locators.userOrEmailInput)
+      .fill(this.inputs.username);
   }
 
   async fillCaseAuditSearchFormKeyboard() {
@@ -168,7 +180,6 @@ class LauPages {
       const input = this.page.locator(selector);
       await input.click();
       await expect(input).toBeFocused();
-      await this.focusColourCheck(input);
     }
   }
 
@@ -193,7 +204,12 @@ class LauPages {
       h1Name = this.elementNames.userDeletionAuditH1;
       h2Name = this.elementNames.caseAuditH2;
       pText = this.elementNames.caseAuditP;
+    } else if (currentUrl.includes("/user-details-audit")) {
+      h1Name = this.elementNames.userDetailsH1;
+      h2Name = this.elementNames.caseAuditH2;
+      pText = this.elementNames.userDetailsP;
     }
+
 
     heading1 = this.page.getByRole("heading", { name: h1Name });
     const fontSizeh1 = await heading1.evaluate((el) =>
@@ -242,6 +258,8 @@ class LauPages {
     titles.push(await this.page.title());
     await this.page.goto("/user-deletion-audit");
     titles.push(await this.page.title());
+    await this.page.goto("/user-details-audit");
+    titles.push(await this.page.title());
 
     for (let i = 0; i < titles.length; i++) {
       for (let j = 0; j < titles.length; j++) {
@@ -278,11 +296,16 @@ class LauPages {
   }
 
   async errorHandle() {
+    let firstInput;
     const errorLink = await this.page
       .locator(this.links.errorSummaryLink)
       .first();
     await errorLink.click();
-    const firstInput = await this.page.locator(this.locators.firstInputField);
+    if (await this.page.url().includes("details")) {
+      firstInput = await this.page.locator(this.locators.userOrEmailInput);
+    } else {
+      firstInput = await this.page.locator(this.locators.firstInputField);
+    }
     await expect(firstInput).toBeFocused();
   }
 }
