@@ -16,7 +16,8 @@
     "caseTypeIdInputField": "input#caseTypeId",
     "jurisdictionInputField": "input#caseJurisdictionId",
     "activitySelect": "select#activity",
-    "mainContent": "#main-content"
+    "mainContent": "#main-content",
+    "userOrEmailInput": "#userIdOrEmail"
   },
   "inputs": {
     "username": "lautest@test.com",
@@ -45,13 +46,16 @@
     "skipToMain": "Skip to main content",
     "challengedSpecificAccessH1": "Challenged & specific access search",
     "logonAuditH1": "Log ons audit search",
-    "userDeletionAuditH1": "Deleted user search"
+    "userDeletionAuditH1": "Deleted user search",
+    "userDetailsH1": "User details search",
+    "userDetailsP": "The user ID is 32 characters long"
   }, 
   "links": {
     "errorSummaryLink": ".govuk-error-summary__list a",
     "challengedSpecificAccess": "challenged & specific access",
     "logOnsAudit": "Log ons audit",
     "deletedUsers": "Deleted users",
+    "userDetails": "User details",
     "csvGuideLink": "guide to downloading csv files",
     "nextPage": "next page",
     "previousPage": "previous page",

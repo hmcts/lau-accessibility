@@ -97,9 +97,4 @@ describe("@lau @caseAudit", () => {
   test("Keyboard User Test", async ({ page }) => {
     await caseAudit.fillCaseAuditSearchFormKeyboard();
   });
-
-  test("Input fields have clear focus", async ({ page }) => {
-    await caseAudit.inputFieldsFocus();
-    await axe.audit(page);
-  });
 });

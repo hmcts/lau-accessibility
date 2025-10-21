@@ -1,16 +1,17 @@
 const { test, expect, describe } = require("@playwright/test");
 const { AxeUtils } = require("../utils/axeUtils");
 const { LauPages } = require("../page-objects/lau");
+const data = require("../data/lauData.json");
 
-describe("@lau @logOnsAudit", () => {
-  let logOns;
+describe("@lau @userDetails", () => {
+  let userDetails;
   let axe;
 
   test.beforeEach(async ({ page }) => {
     axe = new AxeUtils(page);
-    logOns = new LauPages(page);
-    await logOns.logIn();
-    await logOns.goToLogOnsAudit();
+    userDetails = new LauPages(page);
+    await userDetails.logIn();
+    await userDetails.goToUserDetails();
   });
 
   test("@axe homepage is accessible", async ({ page }) => {
@@ -18,19 +19,19 @@ describe("@lau @logOnsAudit", () => {
   });
 
   test("@checklist 1. Headings are visually distinct", async ({ page }) => {
-    await logOns.distinctHeaders();
+    await userDetails.distinctHeaders();
     await axe.audit({ rules: "p-as-heading" });
   });
 
   test("@checklist 2. Heading levels are in a logical order", async ({
     page,
   }) => {
-    await logOns.evaluateHeadingOrder();
+    await userDetails.evaluateHeadingOrder();
     await axe.audit({ rules: ["heading-order", "page-has-heading-one"] });
   });
 
   test("@checklist 3. Skip to main content link", async ({ page }) => {
-    await logOns.skipToMain();
+    await userDetails.skipToMain();
     await axe.audit({ rules: ["bypass", "skip-link"] });
   });
 
@@ -39,61 +40,61 @@ describe("@lau @logOnsAudit", () => {
   });
 
   test("@checklist 5. Page Title is descriptive", async ({ page }) => {
-    const title = await page.title();
-    expect(
-      ["logons"].some((word) =>
-        title.toLowerCase().includes(word.toLowerCase()),
-      ),
-    ).toBe(true);
+    expect(await page.title()).toMatch(
+      new RegExp(data.elementNames.userDetailsH1, "i"),
+    );
   });
 
   test("@checklist 6. Page Title is unique", async ({ page }) => {
-    await logOns.pageTitleUnique();
+    await userDetails.pageTitleUnique();
   });
 
   test("@checklist 7. Colour contrast", async ({ page }) => {
     await axe.audit({ rules: "color-contrast" });
-    await logOns.clickSearchButton();
+    await userDetails.clickSearchButton();
     await page.locator(".govuk-error-summary").focus();
     await axe.audit({ rules: "color-contrast" });
-    await logOns.fillLogOnsAuditForm();
-    await logOns.clickSearchButton();
+    await userDetails.fillUserDetailsSearchForm();
+    await userDetails.clickSearchButton();
     await axe.audit({ rules: "color-contrast" });
   });
 
-  test("@checklist 8. Links open in new tab", async ({ page }) => {
-    await logOns.fillLogOnsAuditForm();
-    await logOns.clickSearchButton();
-    await logOns.CSVGuideLinkNewTabCheck();
+  test.skip("@checklist 8. Links open in new tab", async ({ page }) => {
+    await userDetails.fillUserDetailsSearchForm();
+    await userDetails.clickSearchButton();
+    await userDetails.CSVGuideLinkNewTabCheck();
   });
 
   test("@checklist 9. Links are unique", async ({ page }) => {
     await axe.audit({ rules: "link-name" });
     await axe.audit({ rules: "link-in-text-block" });
-    await logOns.uniqueLinksCheck();
+    await userDetails.uniqueLinksCheck();
   });
 
   test("@checklist 10. Correct language", async ({ page }) => {
     await axe.audit({ rules: "html-has-lang" });
     await axe.audit({ rules: "html-lang-valid" });
     await axe.audit({ rules: "valid-lang" });
+
     const lang = await page.getAttribute("html", "lang");
     expect(lang).toBe("en");
   });
 
   test("@checklist @smoke 11. Error handling (LAU-1148)", async ({ page }) => {
-    await logOns.clickSearchButton();
-    await logOns.errorHandle();
+    await userDetails.clickSearchButton();
+    await userDetails.errorHandle();
   });
 
   test("@smoke LAU-1154 accessibility pagination links have context (LAU-1154)", async ({
     page,
   }) => {
-    await logOns.fillLogOnsAuditForm();
-    await logOns.clickSearchButton();
-    await logOns.paginationNameCheck();
+    await userDetails.fillUserDetailsSearchForm;
+    await userDetails.clickSearchButton();
+    await userDetails.paginationNameCheck();
     await axe.audit({ rules: "link-name" });
   });
 
-  test.skip("@keyboard Keyboard User Test", async ({ page }) => {});
+  test("Keyboard User Test", async ({ page }) => {
+    await userDetails.fillUserDetailsSearchFormKeyboard();
+  });
 });

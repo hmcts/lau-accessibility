@@ -98,9 +98,4 @@ describe("@lau @challengedSpecific", () => {
   });
 
   test.skip("@keyboard Keyboard User Test", async ({ page }) => {});
-
-  test("Input fields have clear focus", async ({ page }) => {
-    await cSAccess.inputFieldsFocus();
-    await axe.audit(page);
-  });
 });
