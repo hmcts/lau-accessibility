@@ -67,8 +67,8 @@ class LauPages {
       .fill(this.inputs.userId);
     await this.page
       .locator(this.locators.startDate)
-      .fill(this.inputs.startDate);
-    await this.page.locator(this.locators.endDate).fill(this.inputs.endDate);
+      .fill(this.inputs.csaStartDate);
+    await this.page.locator(this.locators.endDate).fill(this.inputs.csaEndDate);
   }
 
   async fillCaseAuditSearchForm() {
