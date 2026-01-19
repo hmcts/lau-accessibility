@@ -22,7 +22,7 @@ npm run test-allure:all
 **Run tests in headed mode (For test purpose):**
 Uncomment lines 116-125 in the `playwright.config.js` file.
 ```sh
-npm run test:lau-headed
+npm run test:lau-head-test
 ```
 
 ## Structure
