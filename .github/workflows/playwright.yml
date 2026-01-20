@@ -44,7 +44,7 @@ jobs:
 
       - name: Run checklist tests (Allure)
         if: github.event_name != 'schedule'
-        run: test-allure:gh-checklist
+        run: npm run test-allure:gh-checklist
 
       - name: Generate Allure report
         if: always()
