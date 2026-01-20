@@ -29,6 +29,14 @@ Uncomment lines 116-125 in the `playwright.config.js` file.
 npm run test:lau-head-test
 ```
 
+**Open Allure from GitHub Actions Artifacts:**
+Once run is complete download the uploaded allure-report.
+Unzip the folder
+cd to that folder
+```sh
+run: npx allure open .
+```
+
 ## Structure
 - `tests/`: Test folders for each website
 - `page-objects/`: Page Object Model files

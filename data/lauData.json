@@ -48,7 +48,7 @@
     "logonAuditH1": "Log ons audit search",
     "userDeletionAuditH1": "Deleted user search",
     "userDetailsH1": "User details search",
-    "userDetailsP": "The user ID is 32 characters long"
+    "userDetailsP": "The user ID is  normally 32 characters long"
   },
   "links": {
     "errorSummaryLink": ".govuk-error-summary__list a",
