@@ -38,8 +38,13 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
 
-      - name: Run checklist tests (Allure)
+      - name: Run monthly tests (Allure)
+        if: github.event_name == 'schedule'
         run: npm run test-allure:checklist
+
+      - name: Run checklist tests (Allure)
+        if: github.event_name != 'schedule'
+        run: test-allure:gh-checklist
 
       - name: Generate Allure report
         if: always()
