@@ -1,5 +1,6 @@
 // @ts-check
 import { defineConfig, devices } from '@playwright/test';
+require('dotenv').config();
 
 /**
  * Read environment variables from file.
@@ -21,17 +22,13 @@ export default defineConfig({
   /* Retry on CI only */
   retries: process.env.CI ? 2 : 0,
   /* Opt out of parallel tests on CI. */
-  workers: process.env.CI ? 1 : 7,
+  workers: process.env.CI ? 3 : 7,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: [
-    ['html'],
-    ['list'],
-    ['allure-playwright'],
-  ],
+  reporter: [['html'], ['list'], ['allure-playwright']],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
-    baseURL: 'https://lau.aat.platform.hmcts.net/',
+    baseURL: process.env.BASE_URL,
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
@@ -46,8 +43,8 @@ export default defineConfig({
         browserName: 'chromium',
         headless: true,
         screenshot: 'only-on-failure',
-        trace:  'retain-on-failure',
-      }
+        trace: 'retain-on-failure',
+      },
     },
     {
       name: 'lau-safari',
@@ -56,8 +53,8 @@ export default defineConfig({
         browserName: 'webkit',
         headless: true,
         screenshot: 'only-on-failure',
-        trace:  'retain-on-failure',
-      }
+        trace: 'retain-on-failure',
+      },
     },
     {
       name: 'lau-firefox',
@@ -66,30 +63,30 @@ export default defineConfig({
         browserName: 'firefox',
         headless: true,
         screenshot: 'only-on-failure',
-        trace:  'retain-on-failure',
-      }
+        trace: 'retain-on-failure',
+      },
     },
     {
       name: 'lau-chrome',
       testDir: './tests',
       use: {
-        ...devices['Desktop Chrome'], 
+        ...devices['Desktop Chrome'],
         channel: 'chromium',
         headless: true,
         screenshot: 'only-on-failure',
-        trace:  'retain-on-failure',
-      }
+        trace: 'retain-on-failure',
+      },
     },
     {
       name: 'lau-edge',
       testDir: './tests',
       use: {
-        ...devices['Desktop Edge'], 
+        ...devices['Desktop Edge'],
         channel: 'msedge',
         headless: true,
         screenshot: 'only-on-failure',
-        trace:  'retain-on-failure',
-      }
+        trace: 'retain-on-failure',
+      },
     },
     {
       name: 'lau-iphone',
@@ -99,8 +96,8 @@ export default defineConfig({
         browserName: 'webkit',
         headless: true,
         screenshot: 'only-on-failure',
-        trace:  'retain-on-failure',
-      }
+        trace: 'retain-on-failure',
+      },
     },
     {
       name: 'lau-ipad',
@@ -110,8 +107,8 @@ export default defineConfig({
         browserName: 'webkit',
         headless: true,
         screenshot: 'only-on-failure',
-        trace:  'retain-on-failure',
-      }
+        trace: 'retain-on-failure',
+      },
     },
     // {
     //   name: 'lau-head-test',
@@ -120,9 +117,8 @@ export default defineConfig({
     //     browserName: 'chromium',
     //     headless: false,
     //     screenshot: 'only-on-failure',
-    //     trace:  'retain-on-failure',
-    //   }
-    // }
-  ]
+    //     trace: 'retain-on-failure',
+    //   },
+    // },
+  ],
 });
-

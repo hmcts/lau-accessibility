@@ -20,8 +20,6 @@
     "userOrEmailInput": "#userIdOrEmail"
   },
   "inputs": {
-    "username": "lautest@test.com",
-    "password": "Password12",
     "userId": "user-rr",
     "startDate": "2025-10-04T12:04:52",
     "endDate": "2025-11-16T12:04:56",
@@ -50,8 +48,8 @@
     "logonAuditH1": "Log ons audit search",
     "userDeletionAuditH1": "Deleted user search",
     "userDetailsH1": "User details search",
-    "userDetailsP": "The user ID is 32 characters long"
-  }, 
+    "userDetailsP": "The user ID is  normally 32 characters long"
+  },
   "links": {
     "errorSummaryLink": ".govuk-error-summary__list a",
     "challengedSpecificAccess": "challenged & specific access",

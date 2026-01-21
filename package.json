@@ -6,10 +6,8 @@
   "scripts": {
     "test:all": "npx playwright test tests",
     "test-allure:all": "rm -rf ./allure-results && npm run test:all --reporter=line,allure-playwright",
-
     "test:smoke": "npx playwright test tests --grep @smoke --grep @lau",
     "test-allure:smoke": "rm -rf ./allure-results && npm run test:smoke --reporter=line,allure-playwright",
-    
     "test:lau-chromium": "npx playwright test --project=lau-chromium",
     "test:lau-firefox": "npx playwright test --project=lau-firefox",
     "test:lau-webkit": "npx playwright test --project=lau-webkit",
@@ -17,18 +15,20 @@
     "test:lau-edge": "npx playwright test --project =lau-edge",
     "test:lau-iphone": "npx playwright test --project=lau-iphone",
     "test:lau-ipad": "npx playwright test --project=lau-ipad",
-    
     "test:lau-head-test": "npx playwright test --project=lau-head-test",
-
     "test:lau-caseAudit": "npx playwright test tests --grep @caseAudit",
     "test:lau-challengedSpecific": "npx playwright test tests --grep @challengedSpecific",
     "test:lau-logOnsAudit": "npx playwright test tests --grep @logOnsAudit",
     "test:lau-deletedUsers": "npx playwright test tests --grep @deletedUsers",
-
-    "test:checklist": "npx playwright test tests --grep @caseAudit --grep @checklist",
-    "test-allure:checklist": "rm -rf ./allure-results && npm run test:checklist --reporter=line,allure-playwright",
-
-    "allure-generate": "allure generate ./allure-results --clean && allure open ./allure-report"
+    "test:gh-checklist": "npx playwright test --grep @checklist --project=lau-chromium",
+    "test:checklist": "npx playwright test tests --grep @checklist",
+    "test-allure:checklist": "rimraf ./allure-results && npx playwright test tests --grep @checklist --reporter=line,allure-playwright",
+    "test-allure:gh-checklist": "rimraf ./allure-results && npx playwright test --grep @checklist --project=lau-chromium --reporter=line,allure-playwright",
+    "allure:generate": "npx allure generate ./allure-results --clean -o ./allure-report",
+    "allure:open": "npx allure open ./allure-report",
+    "lint": "eslint \"page-objects/**/*.{js,cjs,mjs}\" \"tests/**/*.{js,cjs,mjs}\" \"playwright.config.js\"",
+    "format:check": "prettier --check \"{data,page-objects,tests}/**/*.{js,json}\" playwright.config.js",
+    "format": "prettier --write \"{data,page-objects,tests}/**/*.{js,json}\" playwright.config.js"
   },
   "keywords": [],
   "author": "",
@@ -37,6 +37,16 @@
     "@axe-core/playwright": "^4.10.2",
     "@playwright/test": "^1.56.1",
     "@types/node": "^24.0.3",
-    "allure-playwright": "^3.3.0"
+    "allure-commandline": "^2.36.0",
+    "allure-playwright": "^3.3.0",
+    "eslint": "^9.39.2",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-playwright": "^2.5.0",
+    "globals": "^17.0.0",
+    "prettier": "^3.8.0",
+    "rimraf": "^6.1.2"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3"
   }
 }
