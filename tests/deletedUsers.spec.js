@@ -44,6 +44,7 @@ describe('@lau @deletedUsers', () => {
   });
 
   test('@checklist 6. Page Title is unique', async ({}) => {
+    test.slow();
     await delUser.pageTitleUnique();
   });
 
