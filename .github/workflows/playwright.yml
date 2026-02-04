@@ -2,10 +2,23 @@ name: Playwright Tests
 
 on:
   workflow_dispatch:
+    inputs:
+      run_type:
+        description: 'Which test run do you want?'
+        required: true
+        default: 'checklist'
+        type: choice
+        options:
+          - checklist
+          - monthly
+
   schedule:
+    # First Monday of every month at 09:00 UTC
     - cron: '0 9 1-7 * 1'
+
   push:
     branches: [ master ]
+
   pull_request:
 
 jobs:
@@ -16,6 +29,7 @@ jobs:
       BASE_URL: ${{ secrets.BASE_URL }}
       USERNAME: ${{ secrets.USERNAME }}
       PASSWORD: ${{ secrets.PASSWORD }}
+      IS_MONTHLY: ${{ github.event_name == 'schedule' || inputs.run_type == 'monthly' }}
 
     steps:
       - name: Checkout repo
@@ -35,16 +49,27 @@ jobs:
       - name: ESLint
         run: npm run lint
 
-      - name: Install Playwright browsers
+      # ---------- Playwright browsers ----------
+
+      - name: Install Playwright (Chromium only)
+        if: env.IS_MONTHLY != 'true'
+        run: npx playwright install --with-deps chromium
+
+      - name: Install Playwright (all browsers)
+        if: env.IS_MONTHLY == 'true'
         run: npx playwright install --with-deps
 
+      # ---------- Test execution ----------
+
       - name: Run monthly tests (Allure)
-        if: github.event_name == 'schedule'
+        if: env.IS_MONTHLY == 'true'
         run: npm run test-allure:checklist
 
       - name: Run checklist tests (Allure)
-        if: github.event_name != 'schedule'
+        if: env.IS_MONTHLY != 'true'
         run: npm run test-allure:gh-checklist
+
+      # ---------- Reporting ----------
 
       - name: Generate Allure report
         if: always()
