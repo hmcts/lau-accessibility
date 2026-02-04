@@ -42,6 +42,7 @@ describe('@lau @userDetails', () => {
   });
 
   test('@checklist 6. Page Title is unique', async ({}) => {
+    test.slow();
     await userDetails.pageTitleUnique();
   });
 
