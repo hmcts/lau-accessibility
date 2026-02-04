@@ -221,30 +221,23 @@ class LauPages {
     await expect(skipLink).toBeVisible();
     await expect(await skipLink.getAttribute('href')).toBe(this.locators.mainContent);
   }
-
   async pageTitleUnique() {
+    const routes = [
+      '/case-audit',
+      '/challenged-specific-access',
+      '/logon-audit',
+      '/user-deletion-audit',
+      '/user-details-audit',
+    ];
     const titles = [];
-
-    await this.page.goto('/case-audit');
-    titles.push(await this.page.title());
-    await this.page.goto('/challenged-specific-access');
-    titles.push(await this.page.title());
-    await this.page.goto('/logon-audit');
-    titles.push(await this.page.title());
-    await this.page.goto('/user-deletion-audit');
-    titles.push(await this.page.title());
-    await this.page.goto('/user-details-audit');
-    titles.push(await this.page.title());
-
-    for (let i = 0; i < titles.length; i++) {
-      for (let j = 0; j < titles.length; j++) {
-        if (i !== j) {
-          expect(titles[i]).not.toBe(titles[j]);
-        }
-      }
+    for (const route of routes) {
+      await this.page.goto(route, { waitUntil: 'domcontentloaded' });
+      await expect(this.page).toHaveURL(new RegExp(`${route}$`));
+      titles.push(await this.page.title());
     }
+    const uniqueTitles = new Set(titles);
+    expect(uniqueTitles.size).toBe(titles.length);
   }
-
   async uniqueLinksCheck() {
     const links = this.page.locator('a');
     const count = await links.count();
