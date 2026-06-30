@@ -8,7 +8,7 @@
     "test-allure:all": "rm -rf ./allure-results && npm run test:all --reporter=line,allure-playwright",
     "test:smoke": "npx playwright test tests --grep @smoke --grep @lau",
     "test-allure:smoke": "rm -rf ./allure-results && npm run test:smoke --reporter=line,allure-playwright",
-    "test:lau-chromium": "npx playwright test --project=lau-chromium",
+    "test:lau-chromium": "rimraf ./allure-results && npx playwright test --project=lau-chromium --grep @checklist --reporter=line,allure-playwright",
     "test:lau-firefox": "npx playwright test --project=lau-firefox",
     "test:lau-webkit": "npx playwright test --project=lau-webkit",
     "test:lau-chrome": "npx playwright test --project=lau-chrome",
@@ -35,7 +35,7 @@
   "license": "ISC",
   "devDependencies": {
     "@axe-core/playwright": "^4.10.2",
-    "@playwright/test": "^1.56.1",
+    "@playwright/test": "^1.58.2",
     "@types/node": "^24.0.3",
     "allure-commandline": "^2.36.0",
     "allure-playwright": "^3.3.0",
@@ -43,6 +43,7 @@
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-playwright": "^2.5.0",
     "globals": "^17.0.0",
+    "pa11y": "^9.1.1",
     "prettier": "^3.8.0",
     "rimraf": "^6.1.2"
   },
