@@ -23,6 +23,8 @@
     "userId": "user-rr",
     "startDate": "2025-10-04T12:04:52",
     "endDate": "2025-11-16T12:04:56",
+    "caStartDate": "2026-04-02T12:04:52",
+    "caEndDate": "2026-04-30T12:04:56",
     "csaStartDate": "2025-03-09T12:04:52",
     "csaEndDate": "2025-05-11T12:04:56",
     "startDateTyped": "09032025",
@@ -35,7 +37,6 @@
     "deleteSearchStartDate": "2023-07-03T12:04:52"
   },
   "elementNames": {
-    "signInBtn": "Sign in",
     "searchBtn": "Search",
     "userId": "User ID",
     "caseTypeID": "Case Type ID",
