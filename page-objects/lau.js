@@ -20,10 +20,24 @@ class LauPages {
     if (!process.env.USERNAME || !process.env.PASSWORD) {
       throw new Error('USERNAME or PASSWORD is missing. Check your .env file or CI secrets.');
     }
+
     await this.page.goto('/');
-    await this.page.locator(this.locators.usernameInput).fill(this.inputs.username);
-    await this.page.locator(this.locators.passwordInput).fill(this.inputs.password);
-    await this.page.getByRole('button', { name: this.elementNames.signInBtn }).click();
+
+    await this.page.waitForURL(/\/enter-email/);
+    await this.page.getByRole('textbox', { name: /email address/i }).fill(this.inputs.username);
+
+    await this.page.getByRole('button', { name: 'Continue', exact: true }).click();
+
+    await this.page.waitForURL(/\/enter-password/);
+    await this.page
+      .getByRole('textbox', {
+        name: 'Enter your password',
+        exact: true,
+      })
+      .fill(this.inputs.password);
+
+    await this.page.getByRole('button', { name: 'Continue', exact: true }).click();
+
     await this.page.waitForURL(this.urls.caseAudit);
   }
 
@@ -67,8 +81,8 @@ class LauPages {
     await this.page
       .getByRole('combobox', { name: this.elementNames.caseTypeID })
       .fill(this.inputs.caseTypeId);
-    await this.page.locator(this.locators.startDate).fill(this.inputs.startDate);
-    await this.page.locator(this.locators.endDate).fill(this.inputs.endDate);
+    await this.page.locator(this.locators.startDate).fill(this.inputs.caStartDate);
+    await this.page.locator(this.locators.endDate).fill(this.inputs.caEndDate);
   }
 
   async fillLogOnsAuditForm() {
